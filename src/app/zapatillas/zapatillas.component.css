@@ -1,0 +1,12 @@
+.altoPrecio {
+    color: gray;
+    font-size: 1em;
+}
+
+.fondoPink {
+    background-color: hotpink;
+}
+
+.linea {
+    text-decoration: underline;
+}

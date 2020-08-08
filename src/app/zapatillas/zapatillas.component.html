@@ -1,0 +1,53 @@
+<h1>
+    {{ titulo }}
+</h1>
+<p>Añadir Marcas</p>
+    <p><input type="text" [(ngModel)]="mi_marca" (blur)="onBlur()" /></p>
+    <p><input type="text" [(ngModel)]="mi_marca" (keyup.enter)="mostrarPalabra()" /></p>
+    <p>{{ mi_marca }}</p> 
+    <button (click)="getMarca()">ver marca</button>
+    <button (click)="addMarca()">Add Marca</button>
+<p>¡Compra las zapatillas de las mejores marcas!</p>
+<ul>
+    <li *ngFor="let marca of marcas; let indice = index">
+        {{indice + '-' + marca }}
+        <button (click)="removeMarca(indice)">Remover</button>
+    </li>
+</ul>
+<ul>
+    <li *ngFor="let deportiva of zapatillas">
+        <span [ngStyle]="{
+            'text-decoration':!deportiva.stock ? 'line-through' : 'none'
+
+        }">
+            {{ deportiva.nombre }} <strong [class.altoPrecio]="deportiva.precio >=3000" 
+                                                [ngClass] ="{ 'fondoPink' : deportiva.precio >5000,
+                                                               'linea': deportiva.marca =='democrata' 
+                                                }"> 
+                                                Precio: {{ deportiva.precio }}</strong>
+        </span>
+
+
+        <span *ngIf="deportiva.precio < 2000" [style.background]=" deportiva.precio < 2000 ? 'green' : 'red'"
+            [style.color]=" deportiva.precio < 2000 ? 'white' : 'black'">
+            ¡En oferta!
+        </span>
+
+    </li>
+</ul>
+<p>El color de las mayoria de las zapatilla es:</p>
+<input type="text" [(ngModel)]="color">
+<ul [ngSwitch]="color">
+    <li *ngSwitchCase="'yellow'">
+       color predominate es el <span [ngStyle]="{'background':color}">Amarillo</span> 
+    </li>
+    <li *ngSwitchCase="'red'">
+        El color predominate es el<span [ngStyle]="{'background':color}">Rojo</span> 
+    </li>
+    <li *ngSwitchCase="'pink'">
+        El color predominate es el<span [ngStyle]="{'background':color}">Rosa</span> 
+    </li>
+    <li *ngSwitchCase="'blue'">
+        El color predominate es el<span [ngStyle]="{'background':color}">Azul</span> 
+    </li>
+</ul>
